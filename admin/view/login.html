@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>GOKAN-后台系统</title>
+		<!-- 样 式 文 件 -->
+		<link rel="stylesheet" href="/adminstatic/pear/css/pear.css" />
+		<link rel="stylesheet" href="/adminstatic/css/other/login.css" />
+	</head>
+    <!-- 代 码 结 构 -->
+	<body background="/adminstatic/images/background.svg" style="background-size: cover;">
+		<form class="layui-form" action="javascript:void(0);">
+			<div class="layui-form-item">
+				<img class="logo" src="/adminstatic/images/logo.png" />
+				<div class="title">GOKAN</div>
+			</div>
+			<div class="layui-form-item">
+				<input placeholder="账 户 : admin " name="user" lay-verify="required" hover class="layui-input"  />
+			</div>
+			<div class="layui-form-item">
+				<input placeholder="密 码 : admin " name="passwd" lay-verify="required" hover class="layui-input"  />
+			</div>
+			<div class="layui-form-item">
+				<input placeholder="验证码 : "  hover  name="captcha"  lay-verify="required" class="code layui-input layui-input-inline"  />
+				<img src="/captcha" class="codeImage" />
+			</div>
+<!--			<div class="layui-form-item">-->
+<!--				<input type="checkbox" name="" title="记住密码" lay-skin="primary" checked>-->
+<!--			</div>-->
+			<div class="layui-form-item">
+				<button type="button" class="pear-btn pear-btn-success login" lay-submit lay-filter="login">
+					登 入
+				</button>
+			</div>
+		</form>
+		<!-- 资 源 引 入 -->
+		<script src="/adminstatic/layui/layui.js"></script>
+		<script src="/adminstatic/pear/pear.js"></script>
+		<script>
+			layui.use(['form', 'button', 'popup','jquery'], function() {
+				var form = layui.form;
+				var $ = layui.jquery;
+				var button = layui.button;
+				var popup = layui.popup;
+				
+                // 登 录 提 交
+				form.on('submit(login)', function(data) {
+					let loadbtn = button.load({elem: '.login'})
+					$.ajax({
+						type:"post",
+						url:"/admin/login",
+						data:data.field,
+						dataType:"json",
+						success:function (res){
+							loadbtn.stop()
+                            if (res.status==200){
+								popup.success("登录成功", function() {
+									location.href = "/admin/index"
+								});
+							}else {
+								$('.codeImage').attr('src',"/captcha?t="+Math.random())
+								popup.failure("登录失败")
+							}
+						},error:function (){
+							loadbtn.stop()
+							popup.failure("登录失败")
+							$('.codeImage').attr('src',"/captcha?t="+Math.random())
+						}
+					})
+					return false;
+				});
+				$('.codeImage').click(function (){
+					$(this).attr('src',"/captcha?t="+Math.random())
+				})
+			})
+		</script>
+	</body>
+</html>

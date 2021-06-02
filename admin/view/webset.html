@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>网站设置</title>
+		<link href="/adminstatic/pear/css/pear.css" rel="stylesheet">
+	</head>
+	<body class="pear-container">
+		<div class="layui-row layui-col-space10">
+			<div class="layui-col-md12">
+				<div class="layui-card" style="margin-top: 10px;">
+					<div class="layui-card-header"></div>
+					<div class="layui-card-body layui-row layui-col-space10">
+						{{ $config:=.config }}
+						<form class="layui-form" lay-filter="DataForm"  action="javascript:void(0);">
+							<div class="layui-form-item">
+								<label class="layui-form-label">名称:</label>
+								<div class="layui-input-block">
+									<input type="text" name="name" placeholder="请输入网站名称" value="{{$config.WebName}}" class="layui-input" lay-verify="required" required />
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">域名:</label>
+								<div class="layui-input-block">
+									<input type="text" name="domin" lay-verify="required" value="{{$config.WebDomin}}" hover placeholder="请输入域名" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">LOGO:</label>
+								<div class="layui-input-block">
+									<input type="text" name="logo" lay-verify="required" value="{{$config.WebLogo}}" hover placeholder="请输入LOGO" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">ICP:</label>
+								<div class="layui-input-block">
+									<input type="text" name="icp" lay-verify="required" value="{{$config.WebICP}}" hover placeholder="请输入ICP" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">Email:</label>
+								<div class="layui-input-block">
+									<input type="text" name="email" lay-verify="required" value="{{$config.WebEmail}}" hover placeholder="请输入Email" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">统计代码:</label>
+								<div class="layui-input-block">
+									<textarea name="statistic" placeholder="请输入统计代码" class="layui-textarea">{{$config.WebStatic}}</textarea>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">模板:</label>
+								<div class="layui-input-block">
+									<select name="template" lay-verify="">
+										<option value="default">默认模板</option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">全站缓存:</label>
+								<div class="layui-input-block">
+									<input type="checkbox" name="cache" lay-skin="switch" lay-text="开启|关闭" {{if eq $config.WebCache "on"}}checked{{end}}>&nbsp;&nbsp;
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label"></label>
+								<button class="pear-btn pear-btn-primary" id="BtnAction" lay-filter="DataFormSubmit" lay-submit>提交</button>
+								<button class="pear-btn pear-btn-warming" type="reset">重置</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="/adminstatic/layui/layui.js"></script>
+		<script src="/adminstatic/pear/pear.js"></script>
+		<script>
+			layui.use(['form','element','button'], function() {
+				var form = layui.form;
+				var $  =layui.jquery;
+				var element = layui.element;
+				var button = layui.button;
+
+				form.on('submit(DataFormSubmit)', function (data) {
+					let loadbtn = button.load({
+						"elem":"#BtnAction"
+					})
+					$.ajax({
+						type:"post",
+						url:"/admin/webset",
+						data:data.field,
+						dataType:"json",
+						success:function (res){
+							if (res.status==200){
+								loadbtn.stop()
+								layer.msg(res.msg)
+							}else {
+								loadbtn.stop()
+								layer.msg("更新失败")
+							}
+						},
+						error:function (){
+							loadbtn.stop()
+							layer.msg("更新失败")
+						}
+					})
+					return false
+				});
+			});
+		</script>
+	</body>
+</html>

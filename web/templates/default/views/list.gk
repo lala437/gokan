@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>{{.webconfig.WebName}}-分类列表</title>
+    <meta name="keywords" content="{{.webconfig.WebName}}" />
+    <meta name="description" content="{{.webconfig.WebName}}" />
+    {{ template "include" }}
+</head>
+
+<body>
+{{ template "head" .}}
+<div class="container">
+    <div class="row">
+        <div class="stui-pannel stui-pannel-bg clearfix">
+           <!--自定义广告位-->
+        </div>
+        <div class="stui-pannel stui-pannel-bg clearfix">
+            <div class="stui-pannel-box">
+                <div class="stui-pannel_hd">
+                    <div class="stui-pannel__head active bottom-line clearfix">
+                        <h3 class="title">
+                            <img src="/static/images/icon_2.png" />分类列表</h3>
+                    </div>
+                    <ul class="stui-screen__list type-slide bottom-line-dot clearfix">
+                        {{ $datatype:=.datatype }}
+                        {{ $catid:=.cat }}
+                        <li>
+                            <span class="text-muted">按分类</span></li>
+                        <li><a href="/index/list/dianying/all/all/all/1.html" class="{{ if eq $datatype "dianying" }}active{{ end }}" target='_self'>电影</a></li>
+                        <li><a href="/index/list/dianshi/all/all/all/1.html" class="{{ if eq $datatype "dianshi" }}active{{ end }}" target='_self'>电视</a></li>
+                        <li><a href="/index/list/zongyi/all/all/all/1.html" class="{{ if eq $datatype "zongyi" }}active{{ end }}" target='_self'>综艺</a></li>
+                        <li><a href="/index/list/dongman/all/all/all/1.html" class="{{ if eq $datatype "dongman" }}active{{ end }}" target='_self'>动漫</a></li>
+                    </ul>
+                    <ul class="stui-screen__list type-slide bottom-line-dot clearfix">
+                        <li><span class="text-muted">按类型</span></li>
+                        <li><a href="/index/list/{{ $datatype }}/all/all/all/1.html" class="{{ if eq $catid "all" }}active{{ end }}" target='_self'>全部</a></li>
+                        {{ range $key,$name:=.catlist }}
+                        <li><a href="/index/list/{{$datatype}}/{{$key}}/all/all/1.html" class="{{ if eq $catid $key }}active{{ end }}" target='_self'>{{$name}}</a></li>
+                        {{ end }}
+                    </ul>
+                </div>
+                <div class="stui-pannel_bd">
+                    <ul class="stui-vodlist clearfix">
+                        {{ range $key2,$value:=.list }}
+                        {{ if le $key2 23}}
+                        <li class="col-md-6 col-sm-3 col-xs-3">
+                            <div class="stui-vodlist__box">
+                                <a class="stui-vodlist__thumb img-shadow" href="/index/play{{ $value.link }}" title="{{$value.title}}">
+                                    <img src="{{$value.img}}" alt="{{$value.title}}">
+                                    <span class="play hidden-xs"></span>
+                                    <span class="pic-text text-right">{{$value.point}}</span></a>
+                                <div class="stui-vodlist__detail">
+                                    <h4 class="title text-overflow">
+                                        <a href="/index/play{{ $value.link }}">{{$value.title}}</a></h4>
+                                    <p class="text text-overflow text-muted hidden-xs">{{$value.star}}</p></div>
+                            </div>
+                        </li>
+                        {{ end }}
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {{ template "page" . }}
+    </div>
+</div>
+{{ template "foot" . }}
+</body>
+
+</html>

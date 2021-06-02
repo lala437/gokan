@@ -1,0 +1,46 @@
+{{ define "head" }}
+<header class="stui-header__top clearfix" id="header-top">
+    <div class="container">
+        <div class="row">
+            <div class="stui-header_bd clearfix">
+                <div class="stui-header__logo">
+                    <a class="logo" href="/"><img src="{{.webconfig.WebLogo}}"></a>
+                </div>
+                <div class="stui-header__side">
+<!--                    <ul class="stui-header__user">-->
+<!--                        <li class="visible-xs">-->
+<!--                            <a class="open-popup" href="javascript:;">-->
+<!--                                <i class="icon iconfont icon-viewgallery"></i>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+                    <div class="stui-header__search">
+                        <div id="search">
+                            <input class="form-control mac_wd" id="wd" placeholder="100万部影片任你搜" autocomplete="off" name="wd" type="text" required="">
+                            <button type="button" class="submit" id="submit">
+                                <i class="icon iconfont icon-search"></i>
+                            </button>
+                        </div>
+                        <div id="word" class="autocomplete-suggestions">
+                        </div>
+                    </div>
+                </div>
+                <ul class="stui-header__menu type-slide">
+                    <li  class=""><a href="/index/list/dianying/all/all/all/1.html">电影</a></li>
+                    <li  class=""><a href="/index/list/dianshi/all/all/all/1.html">电视</a></li>
+                    <li  class=""><a href="/index/list/zongyi/all/all/all/1.html">综艺</a></li>
+                    <li  class=""><a href="/index/list/dongman/all/all/all/1.html">动漫</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<!--<div class="popup clearfix">-->
+<!--    <div class="popup-head bottom-line">-->
+<!--        <h5 class="title pull-right">全部分类</h5>-->
+<!--        <a href="javascript:;" class="close-popup">-->
+<!--            <i class="icon iconfont icon-back"></i>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--</div>-->
+{{ end }}

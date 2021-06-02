@@ -1,0 +1,78 @@
+[
+  {
+    "id": 1,
+    "title": "工作空间",
+    "type": 0,
+    "icon": "layui-icon layui-icon-console",
+    "href": "",
+    "children": [
+      {
+        "id": 10,
+        "title": "控制后台",
+        "icon": "layui-icon layui-icon-align-left",
+        "type": 1,
+        "openType": "_iframe",
+        "href": "/admin/console"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "基础信息",
+    "type": 0,
+    "icon": "layui-icon layui-icon-set",
+    "href": "",
+    "children": [
+      {
+        "id": 11,
+        "title": "基础设置",
+        "icon": "layui-icon layui-icon-align-left",
+        "type": 1,
+        "openType": "_iframe",
+        "href": "/admin/webset"
+      }
+    ]
+  },
+	{
+		"id": 3,
+		"title": "资源接口",
+		"type": 0,
+		"icon": "layui-icon layui-icon-util",
+		"href": "",
+		"children": [
+			{
+				"id": 13,
+				"title": "资源API",
+				"icon": "layui-icon layui-icon-align-left",
+				"type": 1,
+				"openType": "_iframe",
+				"href": "/admin/source"
+			},
+			{
+				"id": 14,
+				"title": "播放接口",
+				"icon": "layui-icon layui-icon-align-left",
+				"type": 1,
+				"openType": "_iframe",
+				"href": "/admin/jk"
+			}
+		]
+	},
+	{
+		"id": 4,
+		"title": "其他管理",
+		"type": 0,
+		"icon": "layui-icon layui-icon-speaker",
+		"href": "",
+		"children": [
+			{
+				"id": 15,
+				"title": "友情链接",
+				"icon": "layui-icon layui-icon-align-left",
+				"type": 1,
+				"openType": "_iframe",
+				"href": "/admin/link"
+			}
+		]
+	}
+]

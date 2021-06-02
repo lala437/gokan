@@ -1,0 +1,110 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>{{.webconfig.WebName}}</title>
+    <meta name="keywords" content="{{.webconfig.WebName}}" />
+    <meta name="description" content="{{.webconfig.WebName}}" />
+    {{ template "include" }}
+    <style>
+        .selectcl{
+            width: 100%;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border:1px solid #EEEEEE;
+        }
+    </style>
+</head>
+
+<body>
+{{ template "head" . }}
+<div class="container">
+    <div class="row">
+        <div class="stui-pannel stui-pannel-bg clearfix">
+       <!--自定义广告位-->
+        </div>
+        <div class="stui-pannel stui-pannel-bg clearfix">
+            <div class="stui-pannel-box">
+                <div class="stui-pannel-bd">
+                    <div class="stui-player col-pd">
+                        <div class="stui-player__video embed-responsive embed-responsive-16by9 clearfix">
+                            <div class="bofang_box">
+                                <iframe border="0" id="video" allowfullscreen="true" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"  src="" width="100%" height="100%" marginWidth="0" frameSpacing="0" marginHeight="0" frameBorder="0" scrolling="no" vspale="0" noResize></iframe>
+                            </div>
+                        </div>
+                        <div class="stui-player__detail detail">
+                            <div class="stui-content__playlist column10">
+                                <select name="" id="source" class="selectcl" onchange="xldata(this)">
+                                   {{ range $k,$jk:= .jklist }}
+                                    <option value="{{$jk.JkLink}}">{{$jk.JkName}}</option>
+                                    {{ end }}
+                                </select>
+                            </div>
+                        <div style="margin-top: 5px">
+                            <a href="javascript:void(0)" class="changebtn" id="next" style="width: 100px" target="_self">下一集</a>
+                            <a href='javascript:void(0)' class="changebtn" id="prev" style="width: 100px" target="_self">上一集</a>
+                        </div>
+                            {{ $detail:=.detail.data }}
+                            <h4 class="title">
+                                <a href="#">{{$detail.title}}</a>
+                            </h4>
+                            <p class="data margin-0">
+                                <span class="text-muted">{{$detail.vtype}}</span>
+                                <span class="split-line"></span>
+                                <span class="text-muted">{{$detail.area}}</span>
+                                <span class="split-line"></span>
+                                <span class="text-muted">{{$detail.year}}</span>
+                                <span class="split-line"></span>
+                                <a class="detail-more" href="javascript:;">详情
+                                    <i class="icon iconfont icon-moreunfold"></i></a>
+                            </p>
+                            <div class="detail-content" style="display: none;">
+                                <p class="data">
+                                    <span class="text-muted">{{$detail.actor}}</span>
+                                </p>
+                                <p class="desc margin-0">
+                                    <span class="left text-muted">简介：</span>{{ $detail.desc }}</p></div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stui-pannel stui-pannel-bg clearfix">
+       <!--自定义广告位-->
+        </div>
+        <!-- 播放器-->
+        {{ $playlist:=.detail.playlist }}
+        {{ range $playtitle,$playinfo:=$playlist }}
+            <div class="stui-pannel stui-pannel-bg clearfix">
+                <div class="stui-pannel-box">
+                    <div class="stui-pannel_hd">
+                        <div class="stui-pannel__head bottom-line clearfix">
+                            <span class="more text-muted pull-right">{{$playtitle}}</span>
+                            <h3 class="title">{{$playtitle}}</h3></div>
+                    </div>
+                    <div class="stui-pannel_bd col-pd clearfix sw">
+                            <ul class="stui-content__playlist column10 clearfix">
+                                {{ range $i,$play:=$playinfo }}
+                                    <li><a href='javascript:void(0)' onclick="bofang(this)" data-href="{{$play.playurl}}"  class="vplay" style="width: 100px" target="_self"><span>{{$play.playtitle}}</span></a></li>
+                                {{ end }}
+                            </ul>
+                    </div>
+                </div>
+            </div>
+       {{ end }}
+        <!-- 播放列表-->
+    </div>
+</div>
+{{ template "foot" . }}
+</body>
+</html>

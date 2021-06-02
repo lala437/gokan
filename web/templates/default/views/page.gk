@@ -1,0 +1,20 @@
+{{define "page"}}
+<ul class="stui-page text-center cleafix">
+    {{ $datatype:=.datatype }}
+    {{ $catid:=.cat }}
+    {{ $pageno:=.pageno }}
+    {{ $totalpage:=.totalpage }}
+    <div class="page_info">
+        <li><a class="pagelink_a" href="/index/list/{{$datatype}}/{{$catid}}/all/all/1.html" title="首页">首页</a></li>
+        <li><a class="pagelink_a" href="/index/list/{{$datatype}}/{{$catid}}/all/all/{{.pre }}.html" title="上一页">上一页</a></li>
+       {{ range $i,$v:=$totalpage }}
+        {{ if eq $pageno $v }}
+        <li class="mbnone"><a class="" href="javascript:;" title="第{{$pageno}}页">{{$pageno}}</a></li>
+        {{ else }}
+        <li class="mbnone"><a class="" href="/index/list/{{$datatype}}/{{$catid}}/all/all/{{$v}}.html" title="第{{$v}}页" >{{$v}}</a></li>
+        {{ end }}
+        {{ end }}
+        <li><a class="pagelink_a" href="/index/list/{{$datatype}}/{{$catid}}/all/all/{{.next}}.html" title="下一页">下一页</a></li>
+    </div>
+</ul>
+{{end}}
