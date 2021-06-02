@@ -17,11 +17,11 @@
 
 解压之后依次执行以下命令
 chmod +x gokan
-./gokan start
+./gokan
 显示服务监听于1235 则表示成功
 
 如需后台运行 执行如下命令
-nohup ./gokan start &
+nohup ./gokan &
 
 如果提示权限不足啥的 可以切换到root用户执行
 
@@ -50,6 +50,13 @@ docker run --name gokan -p 1235:1235 gokan
 
 推荐一个白嫖docker容器的地址:[okteto](https://cloud.okteto.com)
 就是自定义域名比较麻烦
+
+###### windows
+
+```
+直接运行gokan.exe 文件 就会自动调用默认浏览器并打开网页
+
+```
 
 ##### 后台相关
 
