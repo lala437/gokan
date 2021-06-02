@@ -35,7 +35,7 @@ nohup ./gokan &
 目前最优支持 X86_64 以及amd64 架构的linux系统
 可以使用uname -a 查看自己的系统是什么架构的 目前云厂商的服务器应该都是支持的
 
-ARM64架构的 可以试试 执行./gokan_arm start 不保证成功 QAQ
+ARM64架构的 可以试试 执行./gokan_arm不保证成功 QAQ
 
 ```
 
