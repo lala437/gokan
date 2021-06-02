@@ -1,0 +1,2 @@
+# gokan
+auto collection video
