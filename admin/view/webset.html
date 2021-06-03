@@ -51,6 +51,15 @@
 								</div>
 							</div>
 							<div class="layui-form-item">
+								<label class="layui-form-label">目标站:</label>
+								<div class="layui-input-block">
+									<select name="method" lay-verify="">
+										<option value="vt" {{ if eq $config.WebMethod "vt" }}selected{{end}}>维棠</option>
+										<option value="360" {{ if eq $config.WebMethod "360" }}selected{{end}}>360kan</option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-form-item">
 								<label class="layui-form-label">模板:</label>
 								<div class="layui-input-block">
 									<select name="template" lay-verify="">
